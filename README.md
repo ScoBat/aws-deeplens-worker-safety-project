@@ -106,24 +106,25 @@ https://www.aws.training/Details/eLearning?id=32077
 
 1. Go to AWS Lambda in AWS Console at https://console.aws.amazon.com/lambda/.
 2. Click on Create function.
-3. Under Create function, select Blueprints.
-4. Under Blueprints, type greengrass and hit enter to filter blueprint templates.
-5. Select greengrass-hello-world and click Configure.
-6. Under Basic information, provide the following details:
+3. Under Create function, by default Author from scratch should be selected (Blueprint for greengrass-hello-world no longer active)
+4. Under Author from scratch, provide the following details:
 
 * Name: name-worker-safety-deeplens (example: kashif-worker-safety-deeplens)
-* Role: Choose and existing role
+* Runtime: Python 3.7
+* Role: Choose an existing role
 * Existing role: DeepLensInferenceLambdaRole
-* Click Create function.
+* Click Create function
 
-1. Copy the code from [deeplens-lambda.py](./code/deeplens-lambda.py) and paste it under the Function code for the Lambda function. 
-2. Go to line 34 and modify the line below with the name of your S3 bucket created in the earlier step.
-
-* bucket_name = "REPLACE-WITH-NAME-OF-YOUR-S3-BUCKET"
-
-1. Click Save.
-2. Click on Actions, and then "Publish new version".
-3. For Version description enter: Detect a person and push frame to S3 bucket. and click Publish.
+5. Copy the code from [deeplens-lambda.py](./code/deeplens-lambda.py) and paste it under the Function code for the Lambda function
+6. Go to line 34 and modify the line below with the name of your S3 bucket created in the earlier step
+    * bucket_name = "REPLACE-WITH-NAME-OF-YOUR-S3-BUCKET"
+7. Add greengrass SDKdependency folder from https://github.com/aws/aws-greengrass-core-sdk-python/tree/master/greengrasssdk
+8. Rename main Python file to deeplens-lambda.py
+9. Update Handler to deeplens-lambda.greengrass_infinite_infer_run
+10. Click Save
+11. Click on Actions, and then "Publish new version"
+12. For Version description enter: Detect a person and push frame to S3 bucket
+13. Click Publish
 
 ### Create an AWS DeepLens project
 
